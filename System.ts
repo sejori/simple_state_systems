@@ -1,7 +1,8 @@
 export default class System<T extends Record<string, unknown>> {
     constructor(
         public state: T, 
-        public inputs: Record<string, () => Promise<Partial<T>> | Partial<T>> = {},
+        // deno-lint-ignore no-explicit-any
+        public inputs: Record<string, (data: any) => Promise<Partial<T>> | Partial<T>> = {},
         public outputs: Record<string, (state: T) => Promise<unknown> | unknown> = {}
     ) {}
 
