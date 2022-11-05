@@ -1,4 +1,4 @@
-export default class System<T> {
+export default class System<T extends {}> {
     constructor(
         public state: T, 
         public inputs: Record<string, (data: unknown) => Promise<Partial<T>> | Partial<T>> = {},
@@ -10,12 +10,12 @@ export default class System<T> {
         if (!this.inputs[type]) throw new Error("No input function found for input " + type)
 
         const newState = this.inputs[type].call(this, data)
-        Object.entries(newState).forEach(key => this.state[key])
+        Object.entries(newState).forEach(entry => this.state[entry[0]] = entry[1])
 
         return await this.output()
     }
 
     async output() {
-        return await Promise.all(Object.entries(outputs).map(entry => entry[1](this.state)))
+        return await Promise.all(Object.values(this.outputs).map(outputFcn => outputFcn(this.state)))
     }
 }
