@@ -5,7 +5,7 @@ class Plant {
   constructor(public name: string, public preferredTemp: number) {}
 }
 
-Deno.test("System", (t) => {
+Deno.test("System", async (t) => {
   type state = {
     plants: Plant[],
     temperature: number
