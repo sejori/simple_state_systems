@@ -37,15 +37,18 @@ Deno.test("System", (t) => {
   })
 
   t.step("Inputs update state and trigger outputs", async () => {
-    plantBed.outputs["state returner"] = (state) => state
+    const didThing = false
+    plantBed.outputs["does something"] = () => didThing = true
+
     const inputResult = await plantBed.input()
 
     assert(inputResult.length === 2)
     assert(inputResult[0] === "activating heater")
 
     const secondInputResult = await plantBed.input("temperature", 22)
+    assert(plantBed.state.temperature === 22)
     assert(secondInputResult[0] === "not activating header")
-    assert(secondInputResult[1].temperature === 22)
+    assert(didThing)
   })
 })
 
