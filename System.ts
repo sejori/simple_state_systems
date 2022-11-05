@@ -1,8 +1,8 @@
 export default class System<T> {
     constructor(
         public state: T, 
-        public inputs?: Record<string, (data: unknown) => Promise<Partial<T>> | Partial<T>>,
-        public outputs?: Record<string, (state: T) => Promise<unknown> | unknown>
+        public inputs: Record<string, (data: unknown) => Promise<Partial<T>> | Partial<T>> = {},
+        public outputs: Record<string, (state: T) => Promise<unknown> | unknown> = {}
     ) {}
 
     async input(type?: string, data?: unknown) {
