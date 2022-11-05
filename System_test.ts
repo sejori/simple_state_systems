@@ -37,7 +37,7 @@ Deno.test("System", (t) => {
   })
 
   t.step("Inputs update state and trigger outputs", async () => {
-    const didThing = false
+    let didThing = false
     plantBed.outputs["does something"] = () => didThing = true
 
     const inputResult = await plantBed.input()
