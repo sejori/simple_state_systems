@@ -1,3 +1,4 @@
+import { assert } from "https://deno.land/std@0.161.0/testing/asserts.ts";
 import System from "./System.ts";
 
 class Plant {

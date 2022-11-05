@@ -1,11 +1,8 @@
-type InputFcn = (data: unknown) => Promise<Partial<T>> | Partial<T> 
-type OutputFcn = (T) => Promise<unknown> | unknown 
-
 export default class System<T> {
     constructor(
         public state: T, 
-        public inputs?: Record<string, InputFcn>,
-        public outputs?: Record<string, OutputFcn>
+        public inputs?: Record<string, (data: unknown) => Promise<Partial<T>> | Partial<T>>,
+        public outputs?: Record<string, (T) => Promise<unknown> | unknown >
     ) {}
 
     async input(type?: string, data?: unknown) {
