@@ -1,4 +1,4 @@
-# Simple Entity-Based Systems
+# Simple State Systems
 
 The `System` class provides a mutable `state` and `input` and `output` function records for basic state-feedback control.
 
