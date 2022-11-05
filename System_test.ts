@@ -14,7 +14,7 @@ Deno.test("System", async (t) => {
   const tempSetter = (temp: number) => ({ temperature: temp })
   const heaterActivator = (state: state) => state.temperature < Math.min(...state.plants.map(plant => plant.preferredTemp))
     ? "activating heater"
-    : "not activation heater"
+    : "not activating heater"
 
   const plantBed = new System({
     plants: [
@@ -47,7 +47,7 @@ Deno.test("System", async (t) => {
 
     const secondInputResult = await plantBed.input("temperature", 22)
     assert(plantBed.state.temperature === 22)
-    assert(secondInputResult.some(output => output === "not activating header"))
+    assert(secondInputResult[0] === "not activating header")
     assert(didThing)
   })
 })
