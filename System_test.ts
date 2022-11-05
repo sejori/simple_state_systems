@@ -29,7 +29,7 @@ Deno.test("System", async (t) => {
     activateHeater: heaterActivator
   });
 
-  t.step("Initialized with state and inputs/outputs correctly", () => {
+  await t.step("Initialized with state and inputs/outputs correctly", () => {
     assert(plantBed.state.plants[2].name === "olive")
     assert(plantBed.state.temperature === 19)
     assert(plantBed.inputs["temperature"] === tempSetter)
