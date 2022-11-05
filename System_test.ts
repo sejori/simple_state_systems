@@ -47,7 +47,7 @@ Deno.test("System", async (t) => {
 
     const secondInputResult = await plantBed.input("temperature", 22)
     assert(plantBed.state.temperature === 22)
-    assert(secondInputResult[0] === "not activating header")
+    assert(secondInputResult.some(output => output === "not activating header"))
     assert(didThing)
   })
 })
