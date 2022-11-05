@@ -1,4 +1,4 @@
-export default class System<T extends {}> {
+export default class System<T extends Record<string, unknown>> {
     constructor(
         public state: T, 
         public inputs: Record<string, (data: unknown) => Promise<Partial<T>> | Partial<T>> = {},
