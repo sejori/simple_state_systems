@@ -10,7 +10,7 @@ export default class System<T extends Record<string, unknown>> {
         if (!this.inputs[type]) throw new Error("No input function found for input " + type)
 
         const newState = this.inputs[type].call(this, data)
-        Object.entries(newState).forEach(entry => this.state[entry[0]] = entry[1])
+        Object.entries(newState).forEach(entry => Object.defineProperty(this.state, entry[0], { value: entry[1] }))
 
         return await this.output()
     }
