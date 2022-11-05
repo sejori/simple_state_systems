@@ -12,7 +12,7 @@ Deno.test("System", (t) => {
   } 
 
   const tempSetter = (temp: number) => ({ temperature: temp })
-  const heaterActivator = (state: state) => state.temperature < Math.min(state.plants.map(plant => plant.preferredTemp))
+  const heaterActivator = (state: state) => state.temperature < Math.min(...state.plants.map(plant => plant.preferredTemp))
     ? "activating heater"
     : "not activation heater"
 

@@ -1,7 +1,7 @@
 export default class System<T extends Record<string, unknown>> {
     constructor(
         public state: T, 
-        public inputs: Record<string, <S>(data: S) => Promise<Partial<T>> | Partial<T>> = {},
+        public inputs: Record<string, () => Promise<Partial<T>> | Partial<T>> = {},
         public outputs: Record<string, (state: T) => Promise<unknown> | unknown> = {}
     ) {}
 
