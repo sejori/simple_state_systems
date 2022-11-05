@@ -6,8 +6,13 @@ class Plant {
 }
 
 Deno.test("System", (t) => {
+  type state = {
+    plants: Plant[],
+    temperature: number
+  } 
+
   const tempSetter = (temp: number) => ({ temperature: temp })
-  const heaterActivator = (state) => state.temperature < Math.min(state.plants.map(plant => plant.preferredTemp))
+  const heaterActivator = (state: state) => state.temperature < Math.min(state.plants.map(plant => plant.preferredTemp))
     ? "activating heater"
     : "not activation heater"
 
@@ -32,7 +37,7 @@ Deno.test("System", (t) => {
   })
 
   t.step("Inputs update state and trigger outputs", async () => {
-    plantBed.ouputs["state returner"] = (state) => state
+    plantBed.outputs["state returner"] = (state) => state
     const inputResult = await plantBed.input()
 
     assert(inputResult.length === 2)
